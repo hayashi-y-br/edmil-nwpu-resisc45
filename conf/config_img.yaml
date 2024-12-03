@@ -1,5 +1,5 @@
 defaults:
-  - dataset: '012'
+  - dataset: config
   - model: EABMIL
   - settings: config
   - _self_
