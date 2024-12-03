@@ -7,7 +7,7 @@ import torch
 from torchvision.utils import make_grid
 import matplotlib.pyplot as plt
 
-from dataset import MNISTBags
+from dataset import RESISCBags
 
 
 def save_img(X, path='./img/', filename='img', nrow=4, mean=torch.tensor([0.5]), std=torch.tensor([0.5])):
@@ -39,7 +39,7 @@ def main(cfg: DictConfig):
     print('Load Dataset')
     loader_kwargs = {'num_workers': 1, 'pin_memory': True} if cfg.use_cuda else {}
     test_loader = torch.utils.data.DataLoader(
-        MNISTBags(train=False, valid=False, **cfg.dataset),
+        RESISCBags(train=False, valid=False, **cfg.dataset),
         batch_size=1,
         shuffle=False,
         **loader_kwargs
