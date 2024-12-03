@@ -6,5 +6,5 @@
 eval "$(/apps/t4/rhel9/free/miniconda/24.1.2/bin/conda shell.bash hook)"
 conda activate mil
 
-python test.py -m dataset='012' model=EABMIL seed=0 path='/home/6/uf02776/edmil-nwpu-resisc45/NWPU-RESISC45-EABMIL.pth' model.activation=exp settings.loss=nll
-python test.py -m dataset='012' model=EAdditiveMIL seed=0 path='/home/6/uf02776/edmil-nwpu-resisc45/NWPU-RESISC45-EAdditiveMIL.pth' model.activation=leru settings.loss=ce
+python test.py -m model=EABMIL seed=0 path='/home/6/uf02776/edmil-nwpu-resisc45/NWPU-RESISC45-EABMIL.pth' model.activation=exp settings.loss=nll
+python test.py -m model=EAdditiveMIL seed=0 path='/home/6/uf02776/edmil-nwpu-resisc45/NWPU-RESISC45-EAdditiveMIL.pth' model.activation=leru settings.loss=ce
