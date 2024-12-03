@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 from dataset import RESISCBags
 
 
-def save_img(X, path='./img/', filename='img', nrow=4, mean=torch.tensor([0.5]), std=torch.tensor([0.5])):
-    img = make_grid(X, nrow=4, padding=0)
+def save_img(X, path='./img/', filename='img', nrow=8, mean=torch.tensor([0.5]), std=torch.tensor([0.5])):
+    img = make_grid(X, nrow=nrow)
     img = img * std + mean
     img = img.permute(1, 2, 0)
     fig, ax = plt.subplots(figsize=(5, 5))
@@ -53,7 +53,7 @@ def main(cfg: DictConfig):
                 X, y = X.cuda(), y.cuda()
 
             X = X.detach().cpu()[0]
-            save_img(X, path='./img/', filename=f'img_{i}.png')
+            save_img(X, path='./img/', filename=f'img_{i}.png', nrow=8)
 
     sys.stdout = sys.__stdout__
     sys.stderr = sys.__stderr__
