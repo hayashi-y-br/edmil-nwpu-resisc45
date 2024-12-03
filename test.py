@@ -10,7 +10,7 @@ import torch
 from torchvision.utils import make_grid
 from sklearn.metrics import f1_score
 
-from dataset import MNISTBags
+from dataset import RESISCBags
 from loss import EDLLoss
 from models import EABMIL, EAdditiveMIL
 
@@ -49,7 +49,7 @@ def main(cfg: DictConfig):
     print('Load Dataset')
     loader_kwargs = {'num_workers': 1, 'pin_memory': True} if cfg.use_cuda else {}
     test_loader = torch.utils.data.DataLoader(
-        MNISTBags(train=False, valid=False, **cfg.dataset),
+        RESISCBags(train=False, valid=False, **cfg.dataset),
         batch_size=1,
         shuffle=False,
         **loader_kwargs
