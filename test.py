@@ -24,8 +24,6 @@ def main(cfg: DictConfig):
     print(os.path.basename(os.getcwd()),)
     sys.stdout = open('stdout.txt', 'w')
     sys.stderr = open('stderr.txt', 'w')
-    os.makedirs('training', exist_ok=True)
-    os.makedirs('validation', exist_ok=True)
     os.makedirs('test', exist_ok=True)
     os.makedirs('evidence', exist_ok=True)
     os.makedirs('scores', exist_ok=True)
@@ -37,7 +35,7 @@ def main(cfg: DictConfig):
     run = wandb.init(
         project='NWPU-RESISC45-TEST',
         name=cfg.model.name,
-        group=HydraConfig.get().job.override_dirname,
+        # group=HydraConfig.get().job.override_dirname,
         config=OmegaConf.to_container(cfg)
     )
 
@@ -105,6 +103,9 @@ def main(cfg: DictConfig):
                 elif key == 'feature':
                     feature = value.detach().cpu()[0]
                     save_tensor(feature, path='./scores/', filename=f'feature_{i}.csv')
+                elif key == 'original_feature':
+                    feature = value.detach().cpu()[0]
+                    save_tensor(feature, path='./scores/', filename=f'original_feature_{i}.csv')
     for key, value in test_metrics.items():
         value /= len(test_loader.dataset)
         test_metrics[key] = value
