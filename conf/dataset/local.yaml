@@ -1,0 +1,2 @@
+root: ${hydra:runtime.cwd}/data
+patch_size: 32
